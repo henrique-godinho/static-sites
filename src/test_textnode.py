@@ -11,7 +11,8 @@ class TestTextNode(unittest.TestCase):
 
     def test_url_eq(self):
         node = TextNode("This is an url node", TextType.LINKS, "https://www.google.com")
-        node2 = TextNode("This is an url node", TextType.LINKS, "https://www.googe.com")
+        node2 = TextNode("This is an url node", TextType.LINKS, "https://www.google.com")
+        self.assertEqual(node, node2)
 
     def test_not_eq(self):
         node = TextNode("This is text node", TextType.NORMAL_TEXT)
