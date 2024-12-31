@@ -108,5 +108,46 @@ def split_nodes_link(old_nodes):
             new_nodes.append(TextNode(original_text, TextType.NORMAL_TEXT))
     return new_nodes
 
+
+def text_to_textnodes(text):
+    nodes = [TextNode(text, TextType.NORMAL_TEXT)]
+    nodes = split_nodes_delimiter(nodes, "**", TextType.BOLD_TEXT)
+    nodes = split_nodes_delimiter(nodes, "*", TextType.ITALIC_TEXT)
+    nodes = split_nodes_delimiter(nodes, "`", TextType.CODE_TEXT)
+    nodes = split_nodes_image(nodes)
+    nodes = split_nodes_link(nodes)
+    return nodes
+
+def markdown_to_blocks(markdown):
+    blocks = []
+    split = markdown.split("\n\n")
+    for item in split:
+        if len(item) != 0:
+            stripped_item = item.strip()
+            blocks.append(stripped_item)
+    return blocks
+
+def block_to_block_type(block):
+    if "# " in block[:7]:
+        return "heading"
+    if block.startswith("```") and block.endswith("```"):
+        return "code"
+    multi_line_block = block.split("\n")
+    if all(item.startswith(">") for item in multi_line_block):
+        return "quote"
+    if all(item.startswith("* ") or item.startswith("- ") for item in multi_line_block):
+        return "ul"
+    counter = 1
+    truthy = []
+    for item in multi_line_block:
+        if item.startswith(f"{counter}. "):
+            truthy.append(True)
+            counter += 1
+    if truthy:
+        if len(truthy) == len(multi_line_block):
+            return "ol"
+    return "paragraph"
+
+
 main()
 
