@@ -1,6 +1,6 @@
 import unittest
 
-from main import text_to_textnodes
+from markdown_to_html_node_helper import text_to_textnodes
 
 class test_text_to_textnodes(unittest.TestCase):
     def test_text_to_textnode_return(self):

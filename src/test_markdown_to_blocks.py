@@ -1,7 +1,7 @@
 import unittest
 
 
-from main import markdown_to_blocks
+from markdown_to_html_node_helper import markdown_to_blocks
 
 class test_markdown_to_blocks(unittest.TestCase):
     def test_return(self):

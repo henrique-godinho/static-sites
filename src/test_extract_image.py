@@ -1,6 +1,6 @@
 import unittest
 
-from main import extract_markdown_images, extract_markdown_links
+from markdown_to_html_node_helper import extract_markdown_images, extract_markdown_links
 
 class test_extract_markdown(unittest.TestCase):
     def test_list_images(self):

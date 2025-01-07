@@ -1,6 +1,6 @@
 import unittest
 
-from main import block_to_block_type
+from markdown_to_html_node_helper import block_to_block_type
 
 class test_block_to_block_type(unittest.TestCase):
     def test_return_value_block(self):
